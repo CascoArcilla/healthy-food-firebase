@@ -1,4 +1,4 @@
-describe('When a user wants to login', () => {
+describe('When the user login', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.get('[data-cy="nav-login"]').should('be.visible');
