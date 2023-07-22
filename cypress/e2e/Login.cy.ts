@@ -6,7 +6,7 @@ describe('When the user login', () => {
     cy.get('[data-cy="nav-login"]').click();
   });
 
-  it('Then the list of post should be shown', async () => {
+  it('Then the list of post should be shown', () => {
     cy.url().should('include', '/login');
     cy.get('[data-cy="login-form"]').should('be.visible');
     cy.get('[data-cy="email-field"]').type('user@example.com');
