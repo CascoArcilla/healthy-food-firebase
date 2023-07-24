@@ -1,7 +1,7 @@
 import { Form } from "@remix-run/react";
 import TextField from "../TextField/TextField";
 import { useState } from "react";
-import type { ChangeEvent, FormEvent } from 'react'
+import type { ChangeEvent, FormEvent } from "react";
 
 const btnStyles =
   "block p-3 border border-1 rounded-lg font-bold bg-lime-500 text-white hover:bg-lime-600";
@@ -18,7 +18,7 @@ export default function SignUpForm({
     password: "",
     passwordAgain: "",
     isInUse: false,
-    passwordError: ""
+    passwordError: "",
   });
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -28,17 +28,17 @@ export default function SignUpForm({
   }
 
   function onChangePassword(e: ChangeEvent<HTMLInputElement>) {
-    setState(prev => ({ ...prev, password: e.target.value }));
+    setState((prev) => ({ ...prev, password: e.target.value }));
   }
 
   function verifyPassword(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
 
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
       canSubmit: prev.password === value,
       passwordAgain: value,
-      isInUse: true
+      isInUse: true,
     }));
   }
 
@@ -83,7 +83,11 @@ export default function SignUpForm({
         required
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
         onChange={verifyPassword}
-        error={!state.canSubmit && state.isInUse ? 'Las contraseñas deben coincidir' : null}
+        error={
+          !state.canSubmit && state.isInUse
+            ? "Las contraseñas deben coincidir"
+            : null
+        }
       ></TextField>
 
       {children}

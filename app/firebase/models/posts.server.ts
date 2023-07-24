@@ -20,17 +20,17 @@ export async function getPosts() {
 export async function createPost(postInfo: Post, image: File, user: PostUser) {
   invariant(
     postInfo?.constructor === {}.constructor,
-    `"postInfo" debe ser un objeto, no un ${postInfo && postInfo?.constructor}`
+    `"postInfo" debe ser un objeto, no un ${postInfo && postInfo?.constructor}`,
   );
 
   invariant(
     image?.constructor === File,
-    `"image" debe ser un File, no un ${image && image?.constructor}`
+    `"image" debe ser un File, no un ${image && image?.constructor}`,
   );
 
   invariant(
     user?.constructor === {}.constructor,
-    `"user" debe ser un objeto, no un ${user && user?.constructor}`
+    `"user" debe ser un objeto, no un ${user && user?.constructor}`,
   );
 
   const bucket = getStorage().bucket();

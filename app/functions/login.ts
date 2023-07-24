@@ -2,9 +2,11 @@ import { json, redirect } from "@remix-run/node";
 import { commitSession, getSession } from "~/sessions";
 import { signIn, signInWithToken } from "~/firebase/auth.server";
 
-export async function getSessionCookieHeader(cookie: string | null | undefined): Promise<HeadersInit | undefined> {
+export async function getSessionCookieHeader(
+  cookie: string | null | undefined,
+): Promise<HeadersInit | undefined> {
   const session = await getSession(cookie);
-  
+
   return {
     "Set-Cookie": await commitSession(session),
   };
@@ -23,7 +25,11 @@ export async function login(request: Request) {
   }
 }
 
-async function loginSetSessionAndRedirectWithCookie(form: FormData, idToken: FormDataEntryValue | null, headers: Headers) {
+async function loginSetSessionAndRedirectWithCookie(
+  form: FormData,
+  idToken: FormDataEntryValue | null,
+  headers: Headers,
+) {
   const sessionCookie = await loginWithTokenOrEmailPassword(form, idToken);
   const session = await getSession(headers.get("cookie"));
   session.set("session", sessionCookie);
@@ -34,7 +40,10 @@ async function loginSetSessionAndRedirectWithCookie(form: FormData, idToken: For
   });
 }
 
-async function loginWithTokenOrEmailPassword(form: FormData, idToken: FormDataEntryValue | null) {
+async function loginWithTokenOrEmailPassword(
+  form: FormData,
+  idToken: FormDataEntryValue | null,
+) {
   if (typeof idToken === "string") {
     return await signInWithToken(idToken);
   } else {
@@ -42,11 +51,11 @@ async function loginWithTokenOrEmailPassword(form: FormData, idToken: FormDataEn
     const password = form.get("password");
     const formError = json(
       { error: "¡Por favor, llena todos los campos!" },
-      { status: 400 }
+      { status: 400 },
     );
     if (typeof email !== "string") return formError;
     if (typeof password !== "string") return formError;
-    
+
     return await signIn(email, password);
   }
 }

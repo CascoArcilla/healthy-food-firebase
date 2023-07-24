@@ -25,7 +25,7 @@ export default function useLogin(restConfig: any) {
           password: event.currentTarget.password.value,
           returnSecureToken: true,
         },
-        restConfig
+        restConfig,
       );
       if (firebaseRest.isError(login)) {
         setClientAction({ error: login.error.message });
@@ -33,7 +33,7 @@ export default function useLogin(restConfig: any) {
       }
       submit({ idToken: login.idToken }, { method: "post" });
     },
-    [submit, restConfig]
+    [submit, restConfig],
   );
 
   async function onProviderSignIn(credentials: UserCredential) {

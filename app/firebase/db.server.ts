@@ -9,7 +9,5 @@ const converter = <T>() => ({
 
 // helper to apply converter to multiple collections
 export const dataPoint = <T extends FirebaseFirestore.DocumentData>(
-  collectionPath: string
+  collectionPath: string,
 ) => getFirestore().collection(collectionPath).withConverter(converter<T>());
-
-

@@ -4,16 +4,23 @@
   "main": "./functions/index.js",
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
+    "dev": "run-p emulators dev:remix",
+    "dev:remix": "remix dev",
     "emulators": "firebase emulators:start --project healhty-food-2023-2024 --import=firebase-fixtures",
     "emulators:export": "firebase emulators:export --only=auth,firestore,storage ./firebase-fixtures",
     "start": "remix-serve build",
     "typecheck": "tsc",
+    "format": "prettier --write .",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 10 --cache-location ./node_modules/.cache/eslint --fix .",
+    "test:e2e:dev": "run-p dev cypress:open",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "test": "vitest",
+    "test:run": "vitest --run",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "prepare": "husky install",
+    "validate": "run-p lint test:run"
   },
   "dependencies": {
     "@remix-run/node": "^1.17.0",
@@ -43,13 +50,16 @@
     "@vitest/ui": "^0.32.2",
     "cypress": "^12.15.0",
     "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
     "firebase-tools": "^12.4.0",
     "jest": "^29.5.0",
     "jsdom": "^22.1.0",
+    "prettier": "3.0.0",
     "tailwindcss": "^3.3.2",
     "typescript": "^4.8.4",
     "vite": "^4.3.9",
-    "vitest": "^0.32.2"
+    "vitest": "^0.32.2",
+    "husky": "^8.0.0"
   },
   "engines": {
     "node": "18"

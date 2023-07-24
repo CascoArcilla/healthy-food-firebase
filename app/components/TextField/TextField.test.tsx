@@ -27,14 +27,9 @@ describe("When TextField is rendered", () => {
     const spy = vi.fn();
     const view = render(
       <form onSubmit={spy}>
-        <TextField
-          label="Nombre"
-          name="nombre"
-          type="text"
-          required
-        />
+        <TextField label="Nombre" name="nombre" type="text" required />
         <button type="submit">Send</button>
-      </form>
+      </form>,
     );
 
     const btn = view.getByRole("button");
@@ -43,7 +38,7 @@ describe("When TextField is rendered", () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('Then typing should called onChange function', async () => {
+  it("Then typing should called onChange function", async () => {
     const spy = vi.fn();
     const view = render(
       <TextField
@@ -52,11 +47,11 @@ describe("When TextField is rendered", () => {
         type="text"
         required
         onChange={spy}
-      />
+      />,
     );
 
-    const field = view.getByLabelText('Nombre');
-    await userEvent.type(field, 'Jaime');
+    const field = view.getByLabelText("Nombre");
+    await userEvent.type(field, "Jaime");
 
     expect(spy).toHaveBeenCalled();
   });
@@ -74,7 +69,7 @@ describe("When TextField is rendered", () => {
           onChange={spy}
         />
         <button type="submit">Send</button>
-      </form>
+      </form>,
     );
 
     const field = view.getByLabelText("Nombre");
@@ -83,7 +78,7 @@ describe("When TextField is rendered", () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('Then an icon should be existed', () => {
+  it("Then an icon should be existed", () => {
     const view = render(
       <TextField
         label="Correo"
@@ -91,14 +86,14 @@ describe("When TextField is rendered", () => {
         type="email"
         icon={<HiMail data-testid="icon-mail" />}
         required
-      />
+      />,
     );
 
-    const icon = view.getByTestId('icon-mail');
+    const icon = view.getByTestId("icon-mail");
     expect(icon).toBeInTheDocument();
   });
 
-  it('Then, if an error exist, a error message should be shown', () => {
+  it("Then, if an error exist, a error message should be shown", () => {
     const view = render(
       <TextField
         label="Correo"
@@ -106,10 +101,10 @@ describe("When TextField is rendered", () => {
         type="email"
         error="Not fund mail"
         required
-      />
+      />,
     );
 
-    const errorMessage = view.getByText('Not fund mail');
+    const errorMessage = view.getByText("Not fund mail");
     expect(errorMessage).toBeInTheDocument();
   });
 
@@ -127,7 +122,7 @@ describe("When TextField is rendered", () => {
           onChange={spy}
         />
         <button type="submit">Send</button>
-      </form>
+      </form>,
     );
 
     const btn = view.getByRole("button");
@@ -150,11 +145,11 @@ describe("When TextField is rendered", () => {
           onChange={spy}
         />
         <button type="submit">Send</button>
-      </form>
+      </form>,
     );
 
     const field = view.getByLabelText("Nombre");
-    await user.type(field, 'Jaime');
+    await user.type(field, "Jaime");
 
     expect(spy).toHaveBeenCalled();
   });

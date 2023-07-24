@@ -7,7 +7,7 @@ export type TextFieldProps = {
   required?: true | false;
   autoFocus?: true | false;
   name: string;
-  value?: string
+  value?: string;
   type: string;
   autoComplete?: string;
   error?: string | null | undefined;
@@ -15,4 +15,4 @@ export type TextFieldProps = {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   pattern?: string;
-}
+};

@@ -7,7 +7,8 @@ export default function SubmitLogin({ isSubmit, changeSubmit }) {
   let contentButtons;
 
   buttonStyle = `${submitLoginStyle.main} ${submitLoginStyle.mediaQuery}`;
-  contentButtons = "flex flex-row justify-evenly max-[640px]:flex-col max-[640px]:items-center";
+  contentButtons =
+    "flex flex-row justify-evenly max-[640px]:flex-col max-[640px]:items-center";
 
   return (
     <div className={`${contentButtons}`}>
@@ -22,22 +23,21 @@ export default function SubmitLogin({ isSubmit, changeSubmit }) {
         Ingresar
       </Button>
 
-      {
-        isSubmit ?
-          <a
-            className={`${submitLoginStyle.registerMain} ${submitLoginStyle.mediaQuery} ${submitLoginStyle.registerColor} ${submitLoginStyle.registerBorder}`}
-          >
-            Registrar
-          </a>
-          :
-          <Link
-            to="/join"
-            className={`${submitLoginStyle.registerMain} ${submitLoginStyle.mediaQuery} ${submitLoginStyle.registerColor} ${submitLoginStyle.registerBorder}`}
-            data-testid="to-register"
-          >
-            Registrar
-          </Link>
-      }
+      {isSubmit ? (
+        <a
+          className={`${submitLoginStyle.registerMain} ${submitLoginStyle.mediaQuery} ${submitLoginStyle.registerColor} ${submitLoginStyle.registerBorder}`}
+        >
+          Registrar
+        </a>
+      ) : (
+        <Link
+          to="/join"
+          className={`${submitLoginStyle.registerMain} ${submitLoginStyle.mediaQuery} ${submitLoginStyle.registerColor} ${submitLoginStyle.registerBorder}`}
+          data-testid="to-register"
+        >
+          Registrar
+        </Link>
+      )}
     </div>
   );
 }

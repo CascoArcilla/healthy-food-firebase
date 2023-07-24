@@ -24,7 +24,7 @@ export const action = async ({ request }: ActionArgs) => {
   const password = form.get("password");
   const formError = json(
     { error: "Te faltan campos por llenar." },
-    { status: 400 }
+    { status: 400 },
   );
   if (typeof name !== "string") return formError;
   if (typeof email !== "string") return formError;

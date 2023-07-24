@@ -12,7 +12,7 @@ describe("When mapPostsToIndex receive a list of FirestorePost", () => {
     expect(mapped).toHaveProperty("0.image.alt", firestorePosts[0].title);
     expect(mapped).toHaveProperty(
       "0.createdAt",
-      firestorePosts[0].createdAt?.toDate()
+      firestorePosts[0].createdAt?.toDate(),
     );
     expect(mapped).toHaveProperty("0.createdAtLocale");
   });

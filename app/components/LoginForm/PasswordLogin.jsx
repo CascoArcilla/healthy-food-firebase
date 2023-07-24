@@ -14,8 +14,7 @@ export default function PasswordLogin() {
         required
         data-cy="password-field"
         data-testid="input-password"
-      >
-      </TextField>
+      ></TextField>
     </div>
   );
 }

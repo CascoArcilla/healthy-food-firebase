@@ -23,7 +23,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export async function action({ request }: LoaderArgs) {
   const { uid, displayName, email, phoneNumber, photoURL } = await requireAuth(
-    request
+    request,
   );
   const data = await request.formData();
   const { image, ...post } = Object.fromEntries(data.entries());

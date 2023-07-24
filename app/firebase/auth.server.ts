@@ -9,7 +9,7 @@ import { auth } from "./firebase.server";
 export const checkSessionCookie = async (session: Session) => {
   try {
     const decodedIdToken = await auth.server.verifySessionCookie(
-      session.get("session") || ""
+      session.get("session") || "",
     );
     return decodedIdToken;
   } catch {
@@ -17,16 +17,18 @@ export const checkSessionCookie = async (session: Session) => {
   }
 };
 
-export const getLoggedUser = async (request: Request): Promise<UserRecord | null> => {
+export const getLoggedUser = async (
+  request: Request,
+): Promise<UserRecord | null> => {
   const session = await getSession(request.headers.get("cookie"));
   const { uid } = await checkSessionCookie(session);
-  
+
   if (!uid) {
     return null;
   }
-  
+
   return auth.server.getUser(uid); // this returns a promise
-}
+};
 
 export const requireAuth = async (request: Request): Promise<UserRecord> => {
   const session = await getSession(request.headers.get("cookie"));
@@ -37,7 +39,7 @@ export const requireAuth = async (request: Request): Promise<UserRecord> => {
       headers: { "Set-Cookie": await destroySession(session) },
     });
   }
-  
+
   return auth.server.getUser(uid);
 };
 

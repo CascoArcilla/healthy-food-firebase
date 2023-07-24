@@ -25,7 +25,7 @@ describe("When SignUpForm is rendered", () => {
   it("Then submit button should exist", async () => {
     const formView = render(<RouterProvider router={router} />);
 
-    const btn = await formView.findByRole('button', { name: /registrarme/i });
+    const btn = await formView.findByRole("button", { name: /registrarme/i });
 
     expect(btn).toBeInTheDocument();
   });
@@ -35,15 +35,17 @@ describe("When SignUpForm is rendered", () => {
     const user = userEvent.setup();
     const password = "Aeiou1234";
     const passwordField = await formView.findByLabelText(/^\*?contraseña$/i);
-    const passwordAgainField = await formView.findByLabelText(/repetir contraseña$/i);
+    const passwordAgainField = await formView.findByLabelText(
+      /repetir contraseña$/i,
+    );
 
     await act(async () => {
       await user.type(passwordField, password);
       await user.type(passwordAgainField, password);
     });
 
-    const error = formView.queryByText('Las contraseñas deben coincidir');
-    expect(error).not.toBeInTheDocument()
+    const error = formView.queryByText("Las contraseñas deben coincidir");
+    expect(error).not.toBeInTheDocument();
     expect(passwordField).toHaveValue(password);
     expect(passwordAgainField).toHaveValue(password);
   });
@@ -53,15 +55,17 @@ describe("When SignUpForm is rendered", () => {
     const user = userEvent.setup();
     const password = "Aeiou1234";
     const passwordField = await formView.findByLabelText(/^\*?contraseña$/i);
-    const passwordAgainField = await formView.findByLabelText(/repetir contraseña$/i);
+    const passwordAgainField = await formView.findByLabelText(
+      /repetir contraseña$/i,
+    );
 
     await act(async () => {
       await user.type(passwordField, password);
       await user.type(passwordAgainField, "Aei12345");
     });
 
-    const error = formView.queryByText('Las contraseñas deben coincidir');
-    expect(error).toBeInTheDocument()
+    const error = formView.queryByText("Las contraseñas deben coincidir");
+    expect(error).toBeInTheDocument();
     expect(passwordField).toHaveValue(password);
     expect(passwordAgainField).not.toHaveValue(password);
   });

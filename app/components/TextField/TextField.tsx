@@ -26,7 +26,7 @@ function TextField(
     pattern,
     ...moreProps
   }: TextFieldProps,
-  ref: ForwardedRef<HTMLInputElement>
+  ref: ForwardedRef<HTMLInputElement>,
 ) {
   const id = useId();
   const ariaId = `${id}-${name}`;

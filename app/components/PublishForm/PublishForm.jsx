@@ -31,8 +31,7 @@ export default function PublishForm({ userName }) {
   };
 
   return (
-    // @TODO actualizar colores de acuerdo a una paleta de colores establecida
-    <section className="bg-pw-white max-md:rounded-none rounded-t-lg w-full border border-pw-gray">
+    <section className="max-md:rounded-none rounded-t-lg w-full">
       <div className="bg-pw-green rounded-t-lg max-md:rounded-t-none flex justify-center items-center max-md:text-center">
         <h1 className="text-lg p-2 text-white font-bold top-0 w-full">
           {userName || "Bienvenido"}, publica tu nueva comida sana

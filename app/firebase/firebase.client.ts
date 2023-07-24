@@ -7,7 +7,7 @@ const firebaseConfig = {
   projectId: "healhty-food-2023-2024",
   storageBucket: "healhty-food-2023-2024.appspot.com",
   messagingSenderId: "523772083910",
-  appId: "1:523772083910:web:c7fe207c596982a0f7a1c7"
+  appId: "1:523772083910:web:c7fe207c596982a0f7a1c7",
 };
 
 let app: FirebaseApp;
